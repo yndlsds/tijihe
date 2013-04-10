@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<!-- Basic Page Needs -->
+	<meta charset='utf-8'>
+	<title>Your Page Title Here :)</title>
+	<meta name='description' content='>
+	<meta name='author' content='>
+
+	<!-- Mobile Specific Metas -->
+	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
+	
+	<!-- Le Metro Bootstrap -->
+	<link rel='stylesheet' type='text/css' href='css/metro-bootstrap.css'>
+
+	<!-- Le Styles -->
+	<link rel='stylesheet' type='text/css' href='css/styles.css'>
+	<link rel='stylesheet' type='text/css' href='css/icons.css'>
+
+	<!--[if lt IE 9]>
+		<script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+	<![endif]-->
+
+	<!-- Favicons -->
+	<link rel='shortcut icon' href='images/favicon.ico'>
+
+</head>
+
+<body>
+	<div class='navbar navbar-fixed-top'>
+	  <div class='navbar-inner'>
+	    <div class='container'>	
+
+	      <!-- Be sure to leave the brand out there if you want it shown -->
+	      <a class='brand' href='/'>题集合</a>
+	      <ul class='nav'>
+				  <li><a href='/'>主页</a></li>
+				  <li class='active'><a href='/edit'>编辑</a></li>
+				  <li><a href='#'>Link</a></li>
+				</ul>
+	 
+	      <!-- Everything you want hidden at 940px or less, place within here -->
+	      <div class='nav-collapse collapse'>
+	      	<ul class='nav'>
+	      		<li>
+						  <form class='navbar-search pull-left'>
+							  <input type='text' class='search-query' placeholder='搜索'>
+							</form>
+					  </li>
+	      	</ul>
+	      	<ul class='nav pull-right'>
+	      		<li><a href='/user'>用户名</a></li>
+	      		<li><a href='/message'>消息</a></li>
+			    	<li><a href='/logout'>注销</i></a></li>
+			      <li><a href='/login' class='nostyle'>登录</i></a></li>
+			      <li><a href='/logon' class='nostyle'>注册</i></a></li>
+			    </ul>
+	      </div>
+
+	    </div><!-- container -->
+	  </div><!-- navbar-inner -->
+	</div><!-- navbar navbar-fixed-top -->
+
+	<div class='container'>
+	<div class='row-fluid'>
+		<!-- editor -->
+		<div class='span6 fixed'>
+			<div class='text-center'>
+				<div class="btn-group">
+					<a id="h1" class="btn" title='标题一'><strong>H1</strong></a>
+		      <a id="h2" class="btn" title='标题二'><strong>H2</strong></a>
+		      <a id="h3" class="btn" title='标题三'><strong>H3</strong></a>
+		    </div>
+		    <div class="btn-group">
+		      <a id="bold" class="btn" title='粗体'><i class="icon-bold"></i></a>
+		      <a id="italic" class="btn" title='斜体'><i class="icon-italic"></i></a>
+		      <a id="link" class="btn" title='链接'><i class="icon-link"></i></a>
+		      <a id='pic' class='btn' title='图片'><i class='icon-picture'></i></a>
+		      <a id="list" class="btn" title='列表'><i class="icon-list"></i></a>
+		     </div>
+		    <div class="btn-group">
+		      <a id="c1" class="btn" title='引用一'><strong>C1</strong></a>
+		      <a id="c2" class="btn" title='引用二'><strong>C2</strong></a>
+		      <a id="c3" class="btn" title='引用三'><strong>C3</strong></a>
+		    </div>
+      </div>
+      <textarea id="content" class="span12"></textarea>
+    	<div class='btn-group'>			 
+		    <button type="submit" class="btn btn-primary">保存</button>
+			  <button type="button" class="btn">放弃</button>
+      	<a href="help" class='btn' title='Markdown编辑帮助'><i class='icon-circle-info'></i></a>
+	    </div>
+		</div><!-- end for eidtor -->
+
+		<!-- preview -->
+		<div class='span6 offset6'>
+			<div id="preview"></div>
+		</div><!-- end for preview -->
+	</div><!-- end for row-fluid -->
+	</div>
+
+	<!-- Le Javascript -->
+	<script type='text/javascript' src='js/jquery.min.js'></script>
+	<!-- Le Javascript for Editor -->
+  <script type='text/javascript' src='js/editor/jquery.textarea.caret.js'></script>
+  <script type='text/javascript'>
+	  $('#h1').click( function() {
+		    $('#content').insertAtCursor('# ');
+		});
+		$('#h2').click( function() {
+		    $('#content').insertAtCursor('## '); 
+		});
+		$('#h3').click( function() {
+		    $('#content').insertAtCursor('### '); 
+		});
+		$('#bold').click( function() {
+		    $('#content').insertAroundCursor('**','**'); 
+		});
+		$('#italic').click( function() {
+		    $('#content').insertAroundCursor('*','*'); 
+		});
+		$('#link').click( function() {
+		    $('#content').insertAroundCursor('[','](http://)'); 
+		});
+		$('#list').click( function() {
+		    $('#content').insertAtCursor('1. ');
+		});		
+		$('#pic').click( function() {
+		    $('#content').insertAroundCursor('![','](http://)');
+		});
+		$('#c1').click( function() {
+		    $('#content').insertAtCursor('> ');
+		});
+		$('#c2').click( function() {
+		    $('#content').insertAtCursor('>> '); 
+		});
+		$('#c3').click( function() {
+		    $('#content').insertAtCursor('>>> '); 
+		});
+  </script>
+ 	<!-- Le Javascript for ShowDown -->
+	<script type='text/javascript' src='js/editor/showdown.js'></script>
+	<script type='text/javascript'>
+		var converter = new Showdown.converter();
+		var convert = function() {
+		    $('#preview').html(converter.makeHtml($('#content').val()));
+		};
+		convert();
+		$('#content').keyup(convert);
+	</script>
+	<!-- Le Javascript for Textarea Autosize -->
+	<script type="text/javascript" src="js/editor/jquery.autosize-min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#content').autosize();
+		});
+	</script>
+
+</body>
+</html>
